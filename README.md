@@ -64,3 +64,7 @@ npm run build
 npm run lint
 npm run preview
 ```
+
+## 微信小程序
+
+仓库里另有一个原生微信小程序版本，目录是 `miniprogram`。用微信开发者工具导入该目录即可预览；正式发布前需要在微信公众平台配置小程序 AppID 和 request 合法域名。详细说明见 `miniprogram/README.md`。

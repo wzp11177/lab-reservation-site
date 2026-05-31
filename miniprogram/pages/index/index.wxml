@@ -1,0 +1,71 @@
+<view class="page">
+  <view class="header">
+    <view>
+      <text class="title">实验室预约</text>
+      <text class="subTitle">{{weekLabel}}</text>
+    </view>
+    <button class="refreshButton" bindtap="refreshReservations" loading="{{isLoading}}">
+      刷新
+    </button>
+  </view>
+
+  <view class="panel">
+    <text class="label">使用人</text>
+    <view class="segment three">
+      <button
+        wx:for="{{users}}"
+        wx:key="*this"
+        class="segmentButton {{selectedUser === item ? 'active' : ''}}"
+        data-user="{{item}}"
+        bindtap="selectUser"
+      >
+        {{item}}
+      </button>
+    </view>
+  </view>
+
+  <view class="panel">
+    <text class="label">周次</text>
+    <view class="segment two">
+      <button class="segmentButton {{weekOffset === 0 ? 'active' : ''}}" data-offset="0" bindtap="selectWeek">
+        本周
+      </button>
+      <button class="segmentButton {{weekOffset === 1 ? 'active' : ''}}" data-offset="1" bindtap="selectWeek">
+        下周
+      </button>
+    </view>
+  </view>
+
+  <scroll-view class="dayTabs" scroll-x enhanced show-scrollbar="{{false}}">
+    <button
+      wx:for="{{days}}"
+      wx:key="key"
+      class="dayTab {{selectedDayIndex === index ? 'dayActive' : ''}}"
+      data-index="{{index}}"
+      bindtap="selectDay"
+    >
+      <text>{{item.weekday}}</text>
+      <text class="dayNumber">{{item.day}}</text>
+    </button>
+  </scroll-view>
+
+  <view class="statusRow">
+    <text class="status">{{statusText}}</text>
+    <text wx:if="{{errorText}}" class="error">{{errorText}}</text>
+  </view>
+
+  <view class="slotList">
+    <view wx:for="{{slots}}" wx:key="key" class="slotRow">
+      <text class="time">{{item.time}}</text>
+      <button
+        class="slotButton {{item.reservation ? 'booked' : ''}} {{item.own ? 'own' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="tapSlot"
+        loading="{{pendingSlot === item.key}}"
+      >
+        <text class="slotMain">{{item.reservation ? item.reservation.user_name : '预约'}}</text>
+        <text wx:if="{{item.reservation}}" class="slotSub">取消</text>
+      </button>
+    </view>
+  </view>
+</view>

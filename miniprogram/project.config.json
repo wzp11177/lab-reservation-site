@@ -1,0 +1,14 @@
+{
+  "description": "实验室预约微信小程序",
+  "appid": "touristappid",
+  "projectname": "lab-reservation-mini-program",
+  "miniprogramRoot": "./",
+  "compileType": "miniprogram",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  }
+}
